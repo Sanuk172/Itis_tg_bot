@@ -1,11 +1,19 @@
-from google import genai
-from Api_key import *
+from telegram_bot import TelegramBot
+from bot_database import BotDatabase
+from my_token import TOKEN_TG
 
-client = genai.Client(api_key=GOOGLE_API_KEY)
 
-response = client.models.generate_content(
-    model="gemini-2.5-flash",
-    contents="Напиши задачу по математике для тренировки 19 номера егэ по математике с ответом, без форматирования"
-)
+def main():
+    # Инициализация базы данных
+    db = BotDatabase()
 
-print(response.text)
+    # Ваш токен бота (замените на реальный)
+    BOT_TOKEN = TOKEN_TG
+
+    # Создание и запуск бота
+    bot = TelegramBot(BOT_TOKEN, db)
+    bot.run()
+
+
+if __name__ == "__main__":
+    main()
